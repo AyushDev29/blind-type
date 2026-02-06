@@ -1,7 +1,7 @@
 // Configuration and constants
 const CONFIG = {
     // Predefined paragraph for typing test
-    PARAGRAPH: `The quick brown fox jumps over the lazy dog, demonstrating agility and speed. In 2024, technology has advanced significantly, with AI systems processing 1,000+ requests per second. Programming requires precision: semicolons, brackets {}, and proper syntax are essential. "Practice makes perfect," as the saying goes. Numbers like 42, 3.14, and 100% accuracy matter in coding. Can you type this without seeing? It's challenging but rewarding!`,
+    PARAGRAPH: `In today’s hyper-connected world, where notifications, deadlines, and expectations collide at lightning speed, the ability to type with precision under pressure has become a powerful advantage. At 6:45 a.m., while most people still struggle to wake up, disciplined individuals begin their routines, setting clear goals and tracking progress with focus and intent. “Consistency, not perfection, drives excellence,” is a principle often repeated, yet rarely practiced. During this blind typing challenge, every hesitation, misplaced comma, forgotten apostrophe, or incorrect number—such as 17, 42, or 3.141—can reduce overall accuracy. Maintain control, regulate your breathing, and trust your muscle memory. Don’t rush; instead, balance speed with clarity, structure with flow, and ambition with patience. When distractions rise and fatigue sets in, stay composed, adjust your rhythm, and continue forward, because true performance is revealed not in comfort, but in controlled chaos.`,
     
     // Fixed timer duration in seconds (2 minutes)
     TIMER_DURATION: 120,
@@ -67,3 +67,4 @@ const StateManager = {
         localStorage.removeItem('blindTypingState');
     }
 };
+
