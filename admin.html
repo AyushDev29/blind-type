@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Blind Typing Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>🔐 Admin Panel</h1>
+            <div class="admin-actions">
+                <button id="refresh-btn" class="btn-icon" title="Refresh Data">🔄</button>
+                <button id="export-btn" class="btn-icon" title="Export Data">📥</button>
+                <button id="clear-btn" class="btn-icon" title="Clear All Data">🗑️</button>
+                <a href="index.html" class="btn-secondary btn-small">Exit Admin</a>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <!-- Paragraph Management Section -->
+            <section class="admin-section">
+                <div class="section-header">
+                    <h2>📝 Test Paragraph Management</h2>
+                    <button id="save-paragraph-btn" class="btn-primary btn-small">Save Changes</button>
+                </div>
+                <div class="paragraph-editor">
+                    <label for="paragraph-input">Edit Test Paragraph:</label>
+                    <textarea 
+                        id="paragraph-input" 
+                        class="paragraph-textarea"
+                        placeholder="Enter the paragraph for typing test..."
+                        rows="6"
+                    ></textarea>
+                    <div class="paragraph-info">
+                        <span>Words: <strong id="word-count">0</strong></span>
+                        <span>Characters: <strong id="char-count-display">0</strong></span>
+                        <span class="info-note">Recommended: 120-200 words</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Overview -->
+            <section class="admin-section">
+                <div class="section-header">
+                    <h2>📊 Statistics Overview</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Total Users</span>
+                            <span class="stat-value" id="total-users">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Average Accuracy</span>
+                            <span class="stat-value" id="avg-accuracy">0%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Average Net WPM</span>
+                            <span class="stat-value" id="avg-wpm">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Top Performer</span>
+                            <span class="stat-value" id="top-performer">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Scores Table -->
+            <section class="admin-section">
+                <div class="section-header">
+                    <h2>🎯 User Scores</h2>
+                    <div class="filter-controls">
+                        <input type="text" id="search-input" placeholder="Search by name or roll..." class="search-input">
+                        <select id="sort-select" class="sort-select">
+                            <option value="date-desc">Latest First</option>
+                            <option value="date-asc">Oldest First</option>
+                            <option value="accuracy-desc">Highest Accuracy</option>
+                            <option value="wpm-desc">Highest WPM</option>
+                            <option value="name-asc">Name A-Z</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="scores-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Roll Number</th>
+                                <th>Accuracy</th>
+                                <th>Net WPM</th>
+                                <th>Accuracy Pts</th>
+                                <th>Speed Pts</th>
+                                <th>Total Score</th>
+                                <th>Performance</th>
+                                <th>Date & Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scores-tbody">
+                            <tr>
+                                <td colspan="11" class="no-data">No test results available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- View Details Modal -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Test Details</h3>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/scoring.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

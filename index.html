@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Typing Skill Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Landing Screen -->
+    <div id="landing-screen" class="screen active">
+        <div class="container">
+            <h1>Blind Typing Skill Assessment</h1>
+            <p class="subtitle">Test your typing accuracy without visual feedback - type without seeing what you write</p>
+            <button id="start-btn" class="btn-primary">Start Test</button>
+        </div>
+    </div>
+
+    <!-- User Details Screen -->
+    <div id="details-screen" class="screen">
+        <div class="container">
+            <h2>Enter Your Details</h2>
+            <form id="details-form">
+                <div class="form-group">
+                    <label for="full-name">Full Name *</label>
+                    <input type="text" id="full-name" required autocomplete="off">
+                    <span class="error-msg" id="name-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="roll-number">Roll Number *</label>
+                    <input type="text" id="roll-number" required autocomplete="off">
+                    <span class="error-msg" id="roll-error"></span>
+                </div>
+                <button type="submit" class="btn-primary">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Test Setup Screen -->
+    <div id="setup-screen" class="screen">
+        <div class="container">
+            <h2>Test Instructions</h2>
+            <div class="paragraph-preview">
+                <h3>You will type the following paragraph:</h3>
+                <div id="preview-paragraph" class="preview-text"></div>
+            </div>
+            <div class="timer-info">
+                <div class="fixed-timer">
+                    <span class="timer-icon">⏱️</span>
+                    <div class="timer-details">
+                        <span class="timer-label">Test Duration</span>
+                        <span class="timer-value">2 Minutes</span>
+                    </div>
+                </div>
+            </div>
+            <button id="begin-test-btn" class="btn-primary">Begin Test</button>
+        </div>
+    </div>
+
+    <!-- Typing Test Screen -->
+    <div id="test-screen" class="screen">
+        <div class="test-header">
+            <div class="test-info">
+                <span class="info-item">Characters: <strong id="char-count">0</strong></span>
+                <span class="info-item">Time: <strong id="time-display">0:00</strong></span>
+                <span class="info-item">Accuracy: <strong id="accuracy-display">100%</strong></span>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+        </div>
+        <div class="test-container">
+            <div class="reference-panel">
+                <h3>Reference Text</h3>
+                <div id="reference-text" class="reference-text"></div>
+            </div>
+            <div class="typing-panel">
+                <h3>Type Here (Blind Mode)</h3>
+                <div class="blind-info">
+                    <p>⚠️ Your typed text is hidden. Focus on accuracy.</p>
+                </div>
+                <textarea 
+                    id="typing-area" 
+                    class="typing-area" 
+                    placeholder="Start typing..."
+                    spellcheck="false"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                ></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+        <div class="container">
+            <h2>Test Results</h2>
+            <div class="results-card">
+                <div class="results-header">
+                    <h3 id="result-name"></h3>
+                    <p id="result-roll"></p>
+                </div>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-label">Time Duration</span>
+                        <span class="result-value" id="result-time"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Characters</span>
+                        <span class="result-value" id="result-total-chars"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Correct Characters</span>
+                        <span class="result-value correct" id="result-correct"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Incorrect Characters</span>
+                        <span class="result-value incorrect" id="result-incorrect"></span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Accuracy</span>
+                        <span class="result-value" id="result-accuracy"></span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Gross WPM</span>
+                        <span class="result-value" id="result-gross-wpm"></span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Net WPM</span>
+                        <span class="result-value" id="result-net-wpm"></span>
+                    </div>
+                    <div class="result-item performance">
+                        <span class="result-label">Performance</span>
+                        <span class="result-value" id="result-performance"></span>
+                    </div>
+                </div>
+                <div class="results-grid">
+                    <div class="result-item highlight">
+                        <span class="result-label">Accuracy Points (60)</span>
+                        <span class="result-value" id="result-accuracy-points"></span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Speed Points (40)</span>
+                        <span class="result-value" id="result-speed-points"></span>
+                    </div>
+                    <div class="result-item performance">
+                        <span class="result-label">Total Score (100)</span>
+                        <span class="result-value" id="result-total-points"></span>
+                    </div>
+                </div>
+                <div class="typed-comparison">
+                    <h3>What You Typed</h3>
+                    <div class="comparison-container">
+                        <div class="typed-text-display" id="typed-text-display"></div>
+                    </div>
+                </div>
+                <div class="results-actions">
+                    <button id="retry-btn" class="btn-secondary">Retry Test</button>
+                    <button id="exit-btn" class="btn-primary">Exit to Home</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/scoring.js"></script>
+    <script src="js/inputHandler.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
